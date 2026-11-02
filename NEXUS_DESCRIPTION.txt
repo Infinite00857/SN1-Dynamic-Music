@@ -6,7 +6,8 @@ Replace Subnautica's music with your own, per biome, cave, facility, base room a
 === DESCRIPTION (paste everything below into the description editor) ===
 
 [center][size=6][b]Dynamic Music 2.0[/b][/size]
-[size=3]Your own soundtrack for Subnautica, chosen by where you are.[/size][/center]
+[size=3]Your own soundtrack for Subnautica, chosen by where you are.[/size]
+[url=https://github.com/Infinite00857/SN1-Dynamic-Music]Source code on GitHub[/url] (MIT license)[/center]
 
 [line]
 
@@ -136,6 +137,7 @@ Custom biomes can get their own music folder:
     SupportsLayered = true             // also creates "MyBiome - night"
 });[/code]
 The same API as 1.x, so existing integrations keep working.
+Full source, build steps and notes on how the game's music system works: [url=https://github.com/Infinite00857/SN1-Dynamic-Music]https://github.com/Infinite00857/SN1-Dynamic-Music[/url]
 
 [line]
 
