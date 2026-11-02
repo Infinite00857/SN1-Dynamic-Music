@@ -1,0 +1,22 @@
+# build output
+bin/
+obj/
+*.user
+.vs/
+
+# release zips go on GitHub Releases / Nexus, not in git
+release/
+
+# audio: never commit music (copyrighted test material)
+samples/
+*.mp3
+*.ogg
+*.wav
+*.flac
+*.m4a
+
+# game files never belong here
+*.dll
+!/lib/.keep
+
+.DS_Store

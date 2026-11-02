@@ -1,0 +1,179 @@
+=== SUMMARY ("About this mod" box, max 255 characters) ===
+
+Replace Subnautica's music with your own, per biome, cave, facility, base room and vehicle. Day/night, first-visit, gapless intro+loop, layered stems. Empty folders keep the original soundtrack. Made with AI.
+
+
+=== DESCRIPTION (paste everything below into the description editor) ===
+
+[center][size=6][b]Dynamic Music 2.0[/b][/size]
+[size=3]Your own soundtrack for Subnautica, chosen by where you are.[/size][/center]
+
+[line]
+
+[size=4][b]Disclaimer[/b][/size]
+i used ai to make the code, changelog, and description of the mod's features. everything else was written by me
+also this mod doesnt include any music, youd need to provide your own music files in the generated folders
+
+[i]2.0 was rebuilt from scratch with Claude, which this time could read the game's own code and data files instead of guessing biome names. That's where most of the 1.x bugs came from.[/i]
+
+[line]
+
+[size=5][b]What it does[/b][/size]
+Drop MP3, OGG, WAV or FLAC files into folders named after places in the game. The mod plays them when you are there and crossfades between areas.
+
+Any area you leave empty plays [b]the game's original music[/b] for that spot, so you can replace just the parts you want.
+
+[size=4][b]Features[/b][/size]
+[list]
+[*][b]Every area the game knows about.[/b] Biomes, caves, Lost River and lava zone sub-areas, the Aurora, wrecks, Precursor facilities, the lifepod, observatory, scanner room and more. Biome names were pulled from the game files, so every one of them matches.
+[*][b]Smart fallbacks.[/b] An empty cave uses its biome's folder; an empty room uses its region's folder; then the [b]Fallback[/b] folder; then the original soundtrack (configurable).
+[*][b]Inside things.[/b] Separate music for your [b]Base[/b], specific base rooms (Scanner Room, Observatory, Moon Pool, Multipurpose Room, Large Room, Corridors), the [b]Cyclops[/b], [b]Seamoth[/b] and [b]PRAWN Suit[/b].
+[*][b]Main menu[/b] music replacement.
+[*][b]Day / night.[/b] Any folder can have a "[i]<folder> - night[/i]" version.
+[*][b]First-visit music.[/b] "[i]<folder> - first visit[/i]" plays during your first in-game days in an area (tracked per save).
+[*][b]Gapless intro + loop.[/b] Name two files [i]song-intro[/i] and [i]song-loop[/i]; the loop joins the intro with no gap and repeats forever. Joins are sample-accurate, and MP3 encoder silence is trimmed automatically.
+[*][b]Auto intro + loop maker.[/b] One button finds where a song repeats and makes the intro and loop files for you.
+[*][b]Layered stems (day/night or between areas).[/b] Tracks play in perfect sync and crossfade instead of restarting, like ULTRAKILL's calm/combat layers.
+[*][b]Resume on re-entry.[/b] Go back to one of your last 6 areas and its song continues where it left off.
+[*][b]No more flip-flopping[/b] at biome borders (adjustable delay), adjustable crossfade length, optional silence between songs.
+[*][b]Optional: keep music at full volume during dialogue[/b] (turn off the game's ducking when the PDA or AI talks).
+[*][b]Story music is respected.[/b] Your music fades out for the crash-landing intro and the rocket launch.
+[*][b]Music packs.[/b] Export and import zips that keep each folder's settings and your layered choices.
+[*][b]Debug overlay[/b] showing the biome name, chosen folder and fallback chain live. Great for building packs.
+[/list]
+
+[line]
+
+[size=5][b]Requirements[/b][/size]
+[list]
+[*]BepInEx (the Subnautica pack)
+[*]Nautilus
+[/list]
+
+[size=5][b]Installation[/b][/size]
+[list=1]
+[*]Extract the zip into your [b]Subnautica[/b] folder (the one with Subnautica.exe). The DLL ends up in [i]BepInEx/plugins/DynamicMusic/[/i]. Vortex does this for you.
+[*]Launch the game once. A [b]Music[/b] folder appears next to the DLL with one folder per main biome.
+[*]Add songs to the folders, then go to [i]Options → Mods → Dynamic Music 2[/i] and press [b]Rescan music folders[/b].
+[/list]
+
+[b]Upgrading from an older version:[/b] delete the old [i]SN1 Dynamic Music.dll[/i] first (two copies won't load together). To keep your music, copy your old [b]Music[/b] folder and [b]config.json[/b] next to the new DLL. Your volume, toggles and layered choices carry over.
+
+[b]Mac:[/b] works with the Windows version of the game under CrossOver / Wine. For BepInEx to load, add a [i]winhttp[/i] override on the Libraries tab of the Wine config.
+
+[line]
+
+[size=5][b]Folder guide[/b][/size]
+[b]Folder presets:[/b] the first launch creates a [b]Minimal[/b] set (main biomes and regions). Want more control? Pick a preset in the options (Minimal + day/night, Standard, Everything) and press [b]Create folders for preset[/b]. Nothing is ever deleted.
+
+[spoiler]
+[b]How fallbacks work[/b]
+Each place tries its own folder, then related folders, then [i]Fallback[/i], then the option "When a folder has no music". Examples:
+[list]
+[*]Kelp Forest cave → KelpForestCaves → KelpForest
+[*]Blood Kelp cave → BloodKelp - Cave → BloodKelp - fallback - Cave → BloodKelp → BloodKelp - fallback
+[*]Inactive Lava Zone corridor → ILZ - Corridor → ILZ - fallback → InactiveLavaZone
+[*]Lost River junction → LostRiver - Junction → LostRiver - fallback
+[*]Any wreck → Wrecks → the biome the wreck is in
+[*]Aurora generator room → Aurora - GeneratorRoom → Aurora - Interior → Crash
+[*]Scanner room → ScannerRoom → Base → the biome outside
+[/list]
+Folders ending in "- fallback" mean "the whole region". Turn on the [b]Debug overlay[/b] to see the exact chain where you are.
+
+[b]Special names[/b]
+[list]
+[*][i]<folder> - night[/i]: plays at night.
+[*][i]<folder> - first visit[/i] and [i]<folder> - night - first visit[/i]: first visit to that area (per save).
+[*][i]name-intro[/i] + [i]name-loop[/i] in one folder: intro once, then loop forever. Other songs in that folder are ignored.
+[/list]
+
+[b]First visit vs intro+loop[/b] (they're different):
+"first visit" = [i]which[/i] music plays the first time you reach a place. "-intro / -loop" = [i]how[/i] one song plays (a start part, then a repeating part). You can combine them by putting an intro+loop pair inside a first-visit folder.
+
+[b]folder.json (optional, per folder)[/b]
+[code]{
+  "volume": 0.8,
+  "shuffle": true,
+  "layered": false,
+  "layerGroup": "lava",
+  "crossfade": 3.0,
+  "mode": "music"
+}[/code]
+[list]
+[*][b]mode[/b]: "silence" = no music here (e.g. a quiet lifepod), "original" = the game's own music here.
+[*][b]layerGroup[/b]: folders with the same group play as synced stems.
+[*][b]volume[/b]: loudness of this folder only.
+[/list]
+[/spoiler]
+
+[line]
+
+[size=5][b]FAQ[/b][/size]
+[b]Will the original music still play?[/b]
+Yes. Any area whose folders are empty plays the game's own track for that area. You can change this in "When a folder has no music", or force it per folder with [i]"mode": "original"[/i].
+
+[b]Can I put several songs in one folder?[/b]
+Yes. They play as a shuffled playlist (or in name order with [i]"shuffle": false[/i]).
+
+[b]Which formats work?[/b]
+MP3, OGG, WAV, FLAC, AIFF. [b]M4A/AAC/WMA/OPUS don't[/b]; the mod tells you which files it skipped. Convert them to OGG or MP3.
+
+[b]My music isn't playing in some place.[/b]
+Turn on the Debug overlay (or type [i]dm_hud[/i] in the console). It shows the biome name, which folder was chosen and why.
+
+[b]Console commands[/b]
+[i]dm_next[/i] skip song · [i]dm_status[/i] what's playing and why · [i]dm_rescan[/i] · [i]dm_hud[/i] overlay
+
+[line]
+
+[size=5][b]For mod makers[/b][/size]
+Custom biomes can get their own music folder:
+[code]DynamicMusicAPI.RegisterZone(new CustomZoneDescriptor {
+    ZoneID = "MyBiome",
+    ZoneType = CustomZoneType.Biome,   // or POI (wins over biomes)
+    IsActive = () => /* player is in my biome */,
+    Priority = 0,
+    SupportsLayered = true             // also creates "MyBiome - night"
+});[/code]
+The same API as 1.x, so existing integrations keep working.
+
+[line]
+
+[size=5][b]Shout outs[/b][/size]
+i wouldn't have been able to make this without claude.
+
+[line]
+
+[size=5][b]2.0 changelog[/b][/size]
+[spoiler]
+[b]Rebuilt from the game's own code and data[/b]
+[list]
+[*]Biome detection now uses the exact names the game reports (pulled from its files), matched the same way the game does. Many old keywords never matched anything.
+[*]Fixed: Crash Zone music playing inside the Aurora.
+[*]Fixed: Kelp Forest music playing in the Blood Kelp caves.
+[*]Fixed: original music gone everywhere. Empty folders now play the original track for that area (configurable).
+[*]Fixed: the old music muting also silenced story music (rocket launch, credits, Cyclops fire).
+[*]Fixed: pop/click when resuming a song.
+[*]Fixed: small gap between intro and loop; layered stems drifting out of sync.
+[*]Fixed: importing several files at once only imported the folder.
+[*]Fixed: settings needing you to leave and re-enter a biome.
+[*]Fixed: Inactive Lava Zone open water had no folder.
+[/list]
+[b]New[/b]
+[list]
+[*]Base room, Cyclops, Seamoth, PRAWN Suit and main menu folders.
+[*]More areas: caves for Safe Shallows, Dunes, Sea Treader's Path, Underwater Islands and Grand Reef; Mountain Island; Blood Kelp Trench; Lost River Corridor and Tree Cove; Aurora generator room; Precursor caves; Observatory; Scanner Room; Rocket.
+[*]Night and first-visit variants for any folder. First visits are tracked per save.
+[*]Auto intro+loop maker, MP3 gapless trimming, layer groups, folder.json, folder presets.
+[*]Options: crossfade length, biome change delay, silence gap length, dialogue ducking, story music, debug overlay.
+[*]Music packs now keep folder settings and layered choices.
+[/list]
+[b]Changed[/b]
+[list]
+[*]"Aurora - Interior" now covers the whole Aurora; the generator room has its own folder that falls back to it.
+[*]Blood Kelp trench uses "BloodKelp - Trench" (was BloodKelpTwo).
+[*]"CragFieldCaves" removed (the game has no such area).
+[*]"InactiveLavaRt" is still read but replaced by "InactiveLavaZone".
+[*]DLL renamed to DynamicMusic.dll.
+[/list]
+[/spoiler]
